@@ -1,6 +1,6 @@
 <template>
   <header>
-    <RouterLink to="/" class="navbarBrand">綠能下的數位地圖</RouterLink>
+    <RouterLink to="/" class="navbarBrand">地圖管理後臺</RouterLink>
     <input type="checkbox" class="navbarToggle" id="navbarToggle" />
     <nav class="nav navbar-light">
       <ul class="navList">
