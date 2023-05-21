@@ -121,7 +121,7 @@
         />
       </div>
       <div class="col-12" style="margin-top: 50px;width: 100%;display:flex; justify-content:flex-end;">
-        <button type="submit" class="btn btn-primary">確認新建</button>
+        <button type="submit" class="btn btn-success" style="color: #fff;">確認新建</button>
       </div>
     </form>
   </div>
