@@ -49,15 +49,6 @@
           placeholder="輸入公司地址"
         />
       </div>
-      <div class="col-12">
-        <label for="inputAddress" class="form-label">場域地址</label>
-        <input
-          type="text"
-          class="form-control"
-          id="inputAddress"
-          placeholder="輸入場域地址"
-        />
-      </div>
     </form>
     <div
       class="col-12"

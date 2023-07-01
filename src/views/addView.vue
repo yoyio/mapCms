@@ -120,6 +120,27 @@
           placeholder="輸入預估總農作產量(噸)"
         />
       </div>
+
+      <!-- 溫室氣體盤查資訊 -->
+      <div class="A-title">溫室氣體盤查資訊</div>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">溫室氣體排放量(ISO 14064)</label>
+        <input
+          class="form-control"
+          id="inputEmail4"
+          placeholder="輸入種植面積(分地)"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">減碳量</label>
+        <input
+          class="form-control"
+          id="inputPassword4"
+          placeholder="輸入農作物類型"
+        />
+      </div>
+
+      <!-- 按鈕 -->
       <div class="col-12" style="margin-top: 50px;width: 100%;display:flex; justify-content:flex-end;">
         <button type="submit" class="btn btn-success" style="color: #fff;">確認新建</button>
       </div>

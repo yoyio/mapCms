@@ -28,6 +28,11 @@
             />新建場域</RouterLink
           >
         </li>
+        <li class="navItem">
+          <RouterLink to="/login" class="nav-link"
+            >登入</RouterLink
+          >
+        </li>
       </ul>
     </nav>
     <label class="navbarToggle-label" for="navbarToggle">

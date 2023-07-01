@@ -39,11 +39,6 @@
                 <td>公司地址</td>
                 <td>雲林縣麥寮鄉興華村興華32號</td>
               </tr>
-              <tr>
-                <th scope="row">6</th>
-                <td>場域地址</td>
-                <td>雲林縣麥寮鄉興華村興華32號</td>
-              </tr>
             </tbody>
           </table>
         </div>
