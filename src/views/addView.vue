@@ -128,7 +128,7 @@
         <input
           class="form-control"
           id="inputEmail4"
-          placeholder="輸入種植面積(分地)"
+          placeholder="輸入溫室氣體排放量(ISO 14064)"
         />
       </div>
       <div class="col-md-6">
@@ -136,7 +136,7 @@
         <input
           class="form-control"
           id="inputPassword4"
-          placeholder="輸入農作物類型"
+          placeholder="輸入減碳量"
         />
       </div>
 

@@ -127,6 +127,36 @@
           </div>
         </div>
       </div>
+
+      <!-- 溫室氣體盤查資訊 -->
+      <div class="col-sm-6" style=" margin-top: 30px;">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">溫室氣體盤查資訊</h5>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col" width="7%"></th>
+                  <th scope="col" width="50%"></th>
+                  <th scope="col" width="0"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>溫室氣體排放量(ISO 14064)</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>減碳量</td>
+                  <td>208</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- footer -->
