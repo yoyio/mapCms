@@ -1,10 +1,10 @@
 <template>
   <div class="A">
-    <div class="A-title">晁陽溫室1</div>
+    <div class="A-title">{{name}}</div>
     <div class="col-sm-12" style="margin-bottom: 30px;">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">公司資訊</h5>
+          <h5 class="card-title">場域資訊</h5>
           <table class="table table-hover">
             <thead>
               <tr>
@@ -16,33 +16,18 @@
             <tbody>
               <tr>
                 <th scope="row">1</th>
-                <td>公司名稱</td>
-                <td>晁陽綠能園區</td>
+                <td>場域地址</td>
+                <td>{{address}}</td>
               </tr>
               <tr>
                 <th scope="row">2</th>
-                <td>負責人</td>
-                <td>王曉明</td>
+                <td>場域經度座標</td>
+                <td>{{longitude}}</td>
               </tr>
               <tr>
                 <th scope="row">3</th>
-                <td>電話</td>
-                <td>056938238</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>聯絡信箱</td>
-                <td>abc123@gmail.com</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>公司地址</td>
-                <td>雲林縣麥寮鄉興華村興華32號</td>
-              </tr>
-              <tr>
-                <th scope="row">6</th>
-                <td>場域地址</td>
-                <td>雲林縣麥寮鄉興華村興華32號</td>
+                <td>場域緯度座標</td>
+                <td>{{latitude}}</td>
               </tr>
             </tbody>
           </table>
@@ -67,22 +52,22 @@
                 <tr>
                   <th scope="row">1</th>
                   <td>發電設備類型</td>
-                  <td>第三型</td>
+                  <td>{{EnergiesEquipment}}</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
                   <td>再生能源類型</td>
-                  <td>太陽光電</td>
+                  <td>{{EnergiesEnergyType}}</td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
                   <td>裝置設置位置</td>
-                  <td>屋頂</td>
+                  <td>{{EnergiesLocation}}</td>
                 </tr>
                 <tr>
                   <th scope="row">4</th>
                   <td>總裝置容量(KW)</td>
-                  <td>84.24</td>
+                  <td>{{EnergiesCapacity}}</td>
                 </tr>
               </tbody>
             </table>
@@ -105,22 +90,22 @@
                 <tr>
                   <th scope="row">1</th>
                   <td>種植面積(分地)</td>
-                  <td>1</td>
+                  <td>{{CropsArea}}</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
                   <td>農作物類型</td>
-                  <td>嫩薑</td>
+                  <td>{{CropsCropType}}</td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
                   <td>預估每株農作產量(公斤)</td>
-                  <td>0.6</td>
+                  <td>{{CropsPerOutput}}</td>
                 </tr>
                 <tr>
                   <th scope="row">4</th>
                   <td>預估總農作產量(噸)</td>
-                  <td>12</td>
+                  <td>{{CropsTotalOutput}}</td>
                 </tr>
               </tbody>
             </table>
@@ -145,12 +130,12 @@
                 <tr>
                   <th scope="row">1</th>
                   <td>溫室氣體排放量(ISO 14064)</td>
-                  <td>1</td>
+                  <td>{{GasEmissions}}</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
                   <td>減碳量</td>
-                  <td>208</td>
+                  <td>{{GasReduction}}</td>
                 </tr>
               </tbody>
             </table>
@@ -166,6 +151,68 @@
     </div>
   </div>
 </template>
+
+<script>
+
+export default {
+  data () {
+    return {
+      //場域資訊
+      name:{},
+      longitude:{},//經度座標
+      latitude:{},//緯度座標
+      address:{},
+      //能源資訊
+      EnergiesCapacity:{},
+      EnergiesEnergyType:{},
+      EnergiesEquipment:{},
+      EnergiesLocation:{},
+      //農作物資訊
+      CropsArea:{},
+      CropsCropType:{},
+      CropsPerOutput:{},
+      CropsTotalOutput:{},
+      //溫室氣體盤查資訊
+      GasEmissions:{},
+      GasReduction:{},
+    }
+  },
+  mounted(){
+    const id = this.$route.params.id;
+    console.log('id',id)
+    this.$http.get(`http://13.115.131.45:3001/admin/sites/${id}`)
+        .then((res) => {
+          console.log(res)
+          //場域資訊
+          this.name=res.data.site.name
+          this.longitude=res.data.site.longitude
+          this.latitude=res.data.site.latitude
+          this.address=res.data.site.address
+
+          //能源資訊
+          this.EnergiesCapacity=res.data.site.Energies.capacity//總裝置容量
+          this.EnergiesEnergyType=res.data.site.Energies.energyType //再生能源類型
+          this.EnergiesEquipment=res.data.site.Energies.equipment //發電設備類型
+          this.EnergiesLocation=res.data.site.Energies.location //發電設備類型
+
+          //農作物資訊
+          this.CropsArea=res.data.site.Crops.area//種植面積
+          this.CropsCropType=res.data.site.Crops.cropType//農作物類型
+          this.CropsPerOutput=res.data.site.Crops.perOutput//預估每株農作產量
+          this.CropsTotalOutput=res.data.site.Crops.totalOutput//預估總農作產量
+
+          //溫室氣體盤查資訊
+          this.GasEmissions=res.data.site.Gas.emissions//溫室氣體排放量
+          this.GasReduction=res.data.site.Gas.reduction//溫室氣體排放量
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+  },
+  methods: {
+  }
+}
+</script>
 
 <style scoped>
 .A {

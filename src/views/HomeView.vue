@@ -3,7 +3,7 @@
     <div class="col-4" style="margin-bottom: 50px;z-index:-1;">
         <div class="card-body">
           <h5 class="card-title">場域總數量</h5>
-          <p class="card-text">3個</p>
+          <p class="card-text">{{ arraydata }}</p>
         </div>
     </div>
     <div class="addbnt">
@@ -21,19 +21,20 @@
           <th scope="col" width="0"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-for="(item, key) in sitesData"
+            :key="key">
         <tr>
-          <th scope="row">1</th>
-          <td>晁陽溫室1</td>
+          <th scope="row">{{key+1}}</th>
+          <td>{{item.name}}</td>
           <td>
-            <RouterLink to="/check" ><button
+            <RouterLink :to="`/check/${item.id}`" ><button
               type="button"
               class="btn btn-dark"
               style="margin-right: 10px"
             >
               查看
             </button></RouterLink>
-            <RouterLink to="/compiler" ><button
+            <RouterLink :to="`/compiler/${item.id}`" ><button
               type="button"
               class="btn btn-info"
               style="margin-right: 10px"
@@ -44,60 +45,7 @@
               type="button"
               class="btn btn-danger"
               style="margin-right: 10px"
-            >
-              刪除
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>晁陽溫室2</td>
-          <td>
-            <RouterLink to="/check" ><button
-              type="button"
-              class="btn btn-dark"
-              style="margin-right: 10px"
-            >
-              查看
-            </button></RouterLink>
-            <RouterLink to="/compiler" ><button
-              type="button"
-              class="btn btn-info"
-              style="margin-right: 10px"
-            >
-              編輯
-            </button></RouterLink>
-            <button
-              type="button"
-              class="btn btn-danger"
-              style="margin-right: 10px"
-            >
-              刪除
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>晁陽溫室3</td>
-          <td>
-            <RouterLink to="/check" ><button
-              type="button"
-              class="btn btn-dark"
-              style="margin-right: 10px"
-            >
-              查看
-            </button></RouterLink>
-            <RouterLink to="/compiler" ><button
-              type="button"
-              class="btn btn-info"
-              style="margin-right: 10px"
-            >
-              編輯
-            </button></RouterLink>
-            <button
-              type="button"
-              class="btn btn-danger"
-              style="margin-right: 10px"
+              @click="deleteData(item)"
             >
               刪除
             </button>
@@ -114,11 +62,52 @@
   </div>
 </template>
 
+<script>
+
+export default {
+  data () {
+    return {
+      arraydata:{},
+      sitesData:{},
+    }
+  },
+  mounted(){
+    this.getData()
+  },
+  methods: {
+    getData(){
+      this.$http.get(`http://13.115.131.45:3001/admin/sites`)
+        .then((res) => {
+          console.log(res)
+          //場域總數量
+          this.arraydata=res.data.sites.length
+          //場域列表
+          console.log("sites",res.data.sites)
+          this.sitesData=res.data.sites
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    deleteData(item){
+      console.log("delete",item.id)
+      this.$http.delete(`http://13.115.131.45:3001/admin/sites/${item.id}`)
+        .then((res) => {
+          console.log(res)
+          this.getData()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
+}
+</script>
+
 <style scoped>
 .A {
   width: 80%;
   margin: 20px auto;
-  height: 80vh;
 }
 .card-text {
   font-size: 28px;

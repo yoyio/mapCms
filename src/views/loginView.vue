@@ -37,7 +37,6 @@
 </style>
 
 <script>
-const { VITE_APP_URL } = import.meta.env
 
 export default {
   data () {
@@ -54,16 +53,13 @@ export default {
     signin () {
       console.log("555")
       this.$router.push('/')
-      // this.$http.post(`${VITE_APP_URL}/v2/admin/signin`, this.usedata)
-      //   .then((res) => {
-      //     console.log(res)
-      //     const { token, expired } = res.data
-      //     document.cookie = `qqqapi=${token};expires=${expired};`
-      //     this.$router.push('/admin/products')
-      //   })
-      //   .catch((err) => {
-      //     console.log(err)
-      //   })
+      this.$http.get(`http://13.115.131.45:3001/admin/sites`)
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }

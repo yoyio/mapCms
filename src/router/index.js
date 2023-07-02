@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import('../views/addView.vue')
     },
     {
-      path: '/check',
+      path: '/check/:id',
       name: 'check',
       component: () => import('../views/checkView.vue')
     },
@@ -35,7 +35,7 @@ const router = createRouter({
       component: () => import('../views/editView.vue')
     },
     {
-      path: '/compiler',
+      path: '/compiler/:id',
       name: 'compiler',
       component: () => import('../views/compilerView.vue')
     }
