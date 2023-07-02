@@ -203,7 +203,7 @@ export default {
 
           //溫室氣體盤查資訊
           this.GasEmissions=res.data.site.Gas.emissions//溫室氣體排放量
-          this.GasReduction=res.data.site.Gas.reduction//溫室氣體排放量
+          this.GasReduction=res.data.site.Gas.reduction//減碳量
         })
         .catch((err) => {
           console.log(err)
